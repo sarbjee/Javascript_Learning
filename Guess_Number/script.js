@@ -1,12 +1,4 @@
 'use strict';
-/* ;
-
-console.log(document.querySelector('.message').textContent);
-=13;
-document.querySelector('.guess').value=23;
- */
-
-/*event listener */
 let secretNumber=Math.trunc(Math.random()*20+1);
 
 
@@ -19,8 +11,9 @@ document.querySelector('.check').addEventListener('click',function(){
    // no input
    if(!guess){
     document.querySelector('.message').textContent= '🥹 No Number';
-    // win
-   } else if(guess===secretNumber){
+   
+   } // winning option
+   else if(guess===secretNumber){
     document.querySelector('.message').textContent= '🥳 Correct Number!';
     document.querySelector('.number').textContent=secretNumber;
     document.querySelector('body').style.backgroundColor='#60b347';
@@ -40,6 +33,8 @@ document.querySelector('.check').addEventListener('click',function(){
         score--;
         document.querySelector('.score').textContent=
         score;
+        document.querySelector('.highscore').textContent
+        =score;
         
         }else{
             document.querySelector('.message').textContent= '🙌🏻 You Lost The Game';
