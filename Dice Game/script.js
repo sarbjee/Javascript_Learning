@@ -18,6 +18,7 @@ let currentScore=0;
 let activePlayer=0;
 score0Element.textContent=0;
 score1Element.textContent=0;
+let playing=true;
 
 const switchPlayer=function(){
 
@@ -38,6 +39,8 @@ diceElement.classList.add('hidden');
 
 // rolling dice 
 btnRoll.addEventListener('click',function(){
+    if(playing){
+
 
     // genrating a random dice roll
 
@@ -61,12 +64,10 @@ btnRoll.addEventListener('click',function(){
     }else{
         // switch to the next player
        switchPlayer();
-       
-       
-       
-
+    }
         
     }
+
 
 });
 btnHold.addEventListener('click',function(){
@@ -76,8 +77,10 @@ btnHold.addEventListener('click',function(){
     document.getElementById(`score--${activePlayer}`).textContent=scores[activePlayer];
   
 
-    // check if player score is >=100 
-    if(scores[activePlayer] >=50){
+    // check if player score is >=100 finish the game 
+    if(scores[activePlayer] >=20){
+        playing=false;
+        diceElement.classList.add('hidden');
         document.querySelector(`.player--${activePlayer}`).classList.add('player--winner');
         document.querySelector(`.player--${activePlayer}`).classList.remove('player--active');
     }
@@ -87,6 +90,21 @@ btnHold.addEventListener('click',function(){
      // switch to the next player
    switchPlayer();
     }
+});
+
+btnNew.addEventListener('click',function(){
+    score0Element.textContent=0;
+    score1Element.textContent=0;
+    current0Element.textContent=0;
+    current1Elemet.textContent=0;
+    const scores=[0,0];
+    player0Element.classList.remove('player--winner');
+    player1Element.classList.remove('player--winner');
+    player0Element.classList.add('player--active');
+    player1Element.classList.remove('player--active');
+    diceElement.classList.remove('hidden');
+    playing=true;
+
 });
 
 
